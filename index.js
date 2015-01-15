@@ -44,7 +44,7 @@ app.post('/', function(req, res) {
   var body = req.body,
     msg = _.assign(body,
       {date: (new Date()).toISOString().slice(0,10)},
-      {mp3url: req.files.mp3.name },
+      {mp3url: req.files.mp3.name }, // 这个名字是个uuid
       {originalFilename: req.files.mp3.originalname}
     );
   // console.log(req.body)
