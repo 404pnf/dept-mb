@@ -15,9 +15,9 @@ app.use(logger('dev'));
 app.use(multer({
   dest: './mp3/',
   rename: function (fieldname, filename) {
-    return filename + '_' + Date.now(); // 防止相同文件名覆盖之前的上传
-  }
-}))
+      return filename + '_' + Date.now(); // 防止相同文件名覆盖之前的上传
+    }
+  }));
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/mp3'));
@@ -36,7 +36,7 @@ app.get('/archive', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  res.render('add_song')
+  res.render('add_song');
 });
 
 
@@ -44,7 +44,7 @@ app.post('/', function(req, res) {
   var body = req.body,
     filename = req.files.mp3.name,
     msg = _.assign(body,
-      {date: (new Date).toISOString().slice(0,10)},
+      {date: (new Date()).toISOString().slice(0,10)},
       {mp3url: filename }
     );
   // console.log(req.body)
@@ -52,8 +52,8 @@ app.post('/', function(req, res) {
   console.log(msg);
   records.unshift(msg);
   db.save();
-  console.log(db);
-  res.redirect('/archive')
+  // console.log(db);
+  res.redirect('/archive');
 });
 
 if (!module.parent) {
