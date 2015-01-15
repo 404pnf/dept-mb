@@ -1,0 +1,24 @@
+<% include header.html %>
+
+<div class="container">
+
+  <h2>之前节目存档</h2>
+  <a href="/archive">收集祝福。</a>
+
+  <h2>送出祝福</h2>
+
+
+    <form role="form" method="post" enctype="multipart/form-data">
+      <div class="input-group">来自: <input type="text" name="from" class="form-control" /></div>
+      <div class="input-group">送给: <input type="text" name="to" class="form-control" /></div>
+      <div class="input-group">歌手: <input type="text" name="artist" class="form-control" /></div>
+      <div class="input-group">歌名: <input type="text" name="title" class="form-control" /></div>
+      <div class="input-group">寄语: <textarea type="text" name="wishes" cols="30" rows="4" class="form-control" ></textarea></div>
+      <div class="input-group">mp3文件: <input type="file" name="mp3" class="form-control" /></div>
+      <input type="submit" value="保存" />
+    </form>
+
+    <p>保存后，页面上第一首歌就是你点的哟~！</p>
+</div>
+
+<% include footer.html %>

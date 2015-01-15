@@ -1,0 +1,17 @@
+<% include header.html %>
+<div class="container">
+
+<% db.forEach(function(e) { %>
+  <li>
+    <%= e.from %> 送给 <%= e.to %> 一首 <%= e.artist %> 的 <%= e.title %>。 寄语：<%= e.wishes %>
+   <audio src="/<%= e.mp3url %>" controls="controls"</audio>
+  </li>
+  <br><br>
+<% }) %>
+
+</div>
+<script>
+$('audio,video').mediaelementplayer();
+</script>
+
+<% include footer.html %>
