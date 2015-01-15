@@ -13,10 +13,10 @@ app.use(logger('dev'));
 // upload file
 // https://github.com/expressjs/multer
 app.use(multer({
-  dest: './mp3/',
-  rename: function (fieldname, filename) {
-      return filename + '_' + Date.now(); // 防止相同文件名覆盖之前的上传
-    }
+  dest: './mp3/'
+  // rename: function (fieldname, filename) {
+  //     return filename + '_' + Date.now(); // 防止相同文件名覆盖之前的上传
+  //   }
   }));
 
 app.use(express.static(__dirname + '/public'));
@@ -42,14 +42,14 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   var body = req.body,
-    filename = req.files.mp3.name,
     msg = _.assign(body,
       {date: (new Date()).toISOString().slice(0,10)},
-      {mp3url: filename }
+      {mp3url: req.files.mp3.name },
+      {originalFilename: req.files.mp3.originalname}
     );
   // console.log(req.body)
   // console.log(req.files)
-  console.log(msg);
+  // console.log(msg);
   records.unshift(msg);
   db.save();
   // console.log(db);
